@@ -1,0 +1,29 @@
+h1, .computer, footer{
+    font-size: xx-large;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+button{
+    padding: 10px 0;
+    font-size: xx-large;
+    height: 200px;
+    width: 200px;
+}
+
+.lost{
+    color: red;
+}
+
+.won{
+    color: greenyellow;
+}
