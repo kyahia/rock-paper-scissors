@@ -1,34 +1,40 @@
-function computerChoice(){
+let score = 0;
+const scoreSpan = document.querySelector("#scoreDisplay");
+scoreSpan.textContent = score;
+
+const choices = document.querySelectorAll("button");
+choices.forEach(element => { 
+    element.addEventListener('click', (e) => {
+        let result = game(e.target.id, computerPlay());
+        element.classList.remove("won");
+        element.classList.remove("lost");
+        switch (result){
+            case 1 :
+                element.classList.add("won");
+                break;
+            case -1 : 
+                element.classList.add("lost");
+                break;
+        }
+        score += result;
+        scoreSpan.textContent = score;
+        
+    })});
+
+function computerPlay(){
     const options = ["r", "p", "s"];
     return options[Math.floor(Math.random()*3)];
 }
 
-function playerChoice(){
-    let choice = prompt(`"r" for "Rock"\n"p" for "Paper"\n"s" for "Scissors"`).toLowerCase();
-    while (choice != "r" && choice != "p" && choice != "s"){
-        choice = playerChoice();
-    }
-    return choice;
-}
-
 function game(player, computer){
     if (player==computer){
-        console.log(`Tie ! You both chose ${player}`);
         return 0;
     }
     else if (player=="r" && computer=="s" || player=="p" && computer=="r" || player=="s" && computer=="p"){
-        console.log(`You win ! ${player} beats ${computer}`);
         return 1;
     }
     else{
-        console.log(`You lose ! ${computer} beats ${player}`);
         return -1;
     }
 }
 
-let score = 0;
-for (let i=0; i<5; i++){
-    score += game(playerChoice(), computerChoice());
-}
-
-console.log(`Game over ! Final score ${score}`);
